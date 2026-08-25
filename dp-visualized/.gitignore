@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.env
+.env.*
+*.log
+tsconfig.tsbuildinfo
+*.mts.tmp
+server/t-api.mts
+server/t-check.mts

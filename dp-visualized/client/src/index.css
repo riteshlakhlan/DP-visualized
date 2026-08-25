@@ -1,0 +1,107 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  @apply bg-ink text-body font-sans antialiased;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #2a3040;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3a4256;
+}
+
+/* ---- shared primitives ---- */
+.panel-label {
+  @apply text-[10px] font-semibold tracking-[0.14em] uppercase text-slate-500;
+}
+
+.btn {
+  @apply inline-flex items-center justify-center gap-1.5 rounded-md border border-line bg-raised px-3 py-1.5 font-mono text-xs text-slate-300 transition-colors hover:border-accent/60 hover:text-white disabled:cursor-not-allowed disabled:opacity-40;
+}
+
+.btn-primary {
+  @apply border-accent-dim bg-accent-dim/20 text-accent hover:bg-accent-dim/40 hover:text-white;
+}
+
+input[type="range"] {
+  @apply h-1.5 w-full cursor-pointer appearance-none rounded-full bg-line accent-accent;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 13px;
+  height: 13px;
+  border-radius: 9999px;
+  background: #818cf8;
+  border: 2px solid #0a0c11;
+  box-shadow: 0 0 0 1px #818cf8;
+  cursor: pointer;
+}
+
+select {
+  @apply rounded-md border border-line bg-raised px-2 py-1.5 font-mono text-xs text-slate-200 outline-none focus:border-accent;
+}
+
+/* prism overrides to match theme */
+code[class*="language-"],
+pre[class*="language-"] {
+  @apply font-mono text-xs leading-relaxed;
+  text-shadow: none;
+}
+.token.comment { @apply italic text-slate-500; }
+.token.keyword { @apply text-violet-400; }
+.token.string { @apply text-emerald-400; }
+.token.number { @apply text-amber-300; }
+.token.function { @apply text-sky-400; }
+.token.operator { @apply text-slate-400; }
+.token.punctuation { @apply text-slate-500; }
+.token.class-name { @apply text-teal-300; }
+.token.builtin { @apply text-sky-300; }
+.code-line-active {
+  background: rgb(129 140 248 / 0.16);
+  box-shadow: inset 2px 0 0 #818cf8;
+}
+
+/* ---- smooth transitions ---- */
+.btn, select, input[type="range"], .rounded-md {
+  transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease,
+              box-shadow 0.15s ease, transform 0.1s ease;
+}
+.btn-primary:active {
+  transform: scale(0.97);
+}
+
+/* ---- complexity badge hover glow ---- */
+[class*="border-sky-500/30"]:hover, [class*="border-violet-500/30"]:hover {
+  box-shadow: 0 0 8px rgb(56 189 248 / 0.2);
+}
+
+/* ---- insight callout subtle animation ---- */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.rounded-md.border-accent\/20 {
+  animation: fadeIn 0.3s ease-out;
+}
